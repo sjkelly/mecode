@@ -28,7 +28,7 @@ def profile_surface(g, kp, x_start, x_stop, x_step, y_start, y_stop, y_step, fee
 
 def write_cal_file(path, surface, x_start, x_stop, x_step, y_start, y_stop,
                    y_step, x_offset, y_offset, mode='w+', ref_zero=True):
-    print path
+    print(path)
     if ref_zero is True:
         surface -= surface[0, 0]
     with open(path, mode) as f:

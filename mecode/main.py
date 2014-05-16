@@ -45,6 +45,7 @@ This software was developed by the Lewis Lab at Harvard University.
 
 """
 
+from __future__ import absolute_import, division, print_function, unicode_literals
 import math
 import os
 from collections import defaultdict
@@ -644,9 +645,10 @@ class G(object):
 
     def write(self, statement):
         if self.print_lines:
-            print statement
+            print(statement)
         if self.outfile is not None:
             self.outfile.write(statement + '\n')
+            #self.outfile.write(bytes(statement + '\n','UTF-8')) # Works for py3, but not py2
         if self.direct_write is True:
             if self._socket is None:
                 import socket
@@ -681,14 +683,14 @@ class G(object):
                 self.current_position['x'] += x
             if y is not None:
                 self.current_position['y'] += y
-            for dimention, delta in kwargs.iteritems():
+            for dimention, delta in kwargs.items():
                 self.current_position[dimention] += delta
         else:
             if x is not None:
                 self.current_position['x'] = x
             if y is not None:
                 self.current_position['y'] = y
-            for dimention, delta in kwargs.iteritems():
+            for dimention, delta in kwargs.items():
                 self.current_position[dimention] = delta
 
         x = self.current_position['x']

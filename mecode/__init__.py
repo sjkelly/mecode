@@ -1,1 +1,1 @@
-from main import G
+from .main import G
