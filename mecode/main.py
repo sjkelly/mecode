@@ -297,7 +297,7 @@ class G(object):
         Examples
         --------
         >>> # arc 10 mm up in y and 10 mm over in x with a radius of 20.
-        >>> g.arc(x-10, y=10, radius=20)
+        >>> g.arc(x=10, y=10, radius=20)
 
         >>> # move 10 mm up on the A axis, arcing through y with a radius of 20
         >>> g.arc(A=10, y=0, radius=20)
@@ -372,7 +372,7 @@ class G(object):
         x : float
             The width of the rectangle in the x dimension.
         y : float
-            The heigh of the rectangle in the y dimension.
+            The height of the rectangle in the y dimension.
         direction : str (either 'CW' or 'CCW') (default: 'CW')
             Which direction to complete the rectangle in.
         start : str (either 'LL', 'UL', 'LR', 'UR') (default: 'LL')
@@ -774,10 +774,15 @@ class G(object):
         plt.show()
 
     def view(self):
-        from mayavi import mlab
+        import matplotlib as mpl
+        from mpl_toolkits.mplot3d import Axes3D
+        import matplotlib.pyplot as plt
         import numpy as np
+        fig = plt.figure()
+        ax = fig.gca(projection='3d')
         history = np.array(self.position_history)
-        mlab.plot3d(history[:, 0], history[:, 1], history[:, 2])
+        ax.plot(history[:, 0], history[:, 1], history[:, 2])
+        plt.show()
 
     def write(self, statement):
         if self.print_lines:
